@@ -1,0 +1,17 @@
+{
+  "name": "golang_htmx_template",
+  "version": "1.0.0",
+  "description": "templ generate --path ./internal/templates && mv ./internal/templates/*.go ./internal/views/",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "templ": "templ generate --path ./internal/templates && mv ./internal/templates/*.go ./internal/views/",
+    "styles": "tailwind -o ./internal/styles/styles.css",
+    "server": "npm run templ && npm run styles && go run ./cmd/main.go",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "daisyui": "^4.4.23"
+  }
+}
