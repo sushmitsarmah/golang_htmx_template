@@ -1,0 +1,14 @@
+package pages
+
+import "golang_htmx_teml/internal/templates/components"
+
+templ HomeBody() {
+    @components.Navbar()
+    <header>
+        <div>Helo Home</div>
+    </header>
+}
+
+templ Home() {
+    @components.PageHeader(HomeBody())
+}

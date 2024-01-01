@@ -1,12 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-
-const daisyui = require("daisyui");
-
 module.exports = {
-  content: ["./internal/templates/**/*.templ"],
+  darkMode: ["class"],
+  content: [
+    './internal/templates/**/*.{js,jsx,templ}',
+  ],
+  prefix: "",
   theme: {
-    extend: {},
+    extend: {
+    },
   },
-  plugins: [daisyui],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("daisyui")
+  ],
 }
-

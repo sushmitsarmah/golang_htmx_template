@@ -1,10 +1,10 @@
 ### Generate templates
 
-templ generate --path ./internal/templates && mv ./internal/templates/*.go ./internal/views/
+templ generate --path ./internal/templates
 
 ### Generate styles
 
-tailwind -o ./internal/styles/styles.css
+tailwind -i ./internal/templates/global.css -o ./internal/assets/styles/styles.css
 
 ### Start Server
 

@@ -3,11 +3,10 @@ package internal
 import (
 	"context"
 	"fmt"
+	"golang_htmx_teml/internal/templates/pages"
 	"log/slog"
 	"net/http"
 	"time"
-
-	"golang_htmx_teml/internal/views"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -61,7 +60,8 @@ func (s *Server) InitRoutes() {
 		// component := views.Hello("John")
 		// component := views.Header("John")
 		// component.Render(r.Context(), w)
-		component := views.Page("John")
+		// component := views.Page("John")
+		component := pages.Home()
 		component.Render(r.Context(), w)
 	})
 
