@@ -1,15 +1,18 @@
 package components
 
-templ PageHeader(children templ.Component) {
+const TITLE = "GO HTMX Template"
+
+templ PageHeader(navbar templ.Component, children templ.Component) {
 	<html>
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<title>Counts</title>
+			<title>{TITLE}</title>
 			<script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 			<link rel="stylesheet"  href="/public/styles/styles.css"></link>
 		</head>
 		<body class="bg-gray-100">
+			@navbar
             @children
 		</body>
 	</html>

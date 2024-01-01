@@ -3,7 +3,9 @@ package internal
 import (
 	"context"
 	"fmt"
+
 	"golang_htmx_teml/internal/templates/pages"
+	"golang_htmx_teml/internal/utils"
 	"log/slog"
 	"net/http"
 	"time"
@@ -57,12 +59,10 @@ func (s *Server) InitRoutes() {
 		if htmxReq != nil && htmxReq.Boosted {
 			fmt.Println("Request is boosted by HTMX")
 		}
-		// component := views.Hello("John")
-		// component := views.Header("John")
-		// component.Render(r.Context(), w)
-		// component := views.Page("John")
-		component := pages.Home()
-		component.Render(r.Context(), w)
+
+		home := pages.HomeBody()
+		page := utils.SetupPage(home)
+		page.Render(r.Context(), w)
 	})
 
 	s.Router.Post("/clicked", func(w http.ResponseWriter, r *http.Request) {
@@ -79,6 +79,14 @@ func (s *Server) InitRoutes() {
 			fmt.Println("Request is boosted by HTMX")
 		}
 		w.Write([]byte("Clicked!"))
+	})
+
+	s.Router.HandleFunc("/values/{value}", func(w http.ResponseWriter, r *http.Request) {
+		value := chi.URLParam(r, "value")
+
+		// Use the value in your response
+		response := "Clicked! Value: " + value
+		w.Write([]byte(response))
 	})
 }
 

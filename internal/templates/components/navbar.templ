@@ -1,6 +1,18 @@
 package components
 
-templ Navbar() {
+import "golang_htmx_teml/internal/types"
+
+script withParameters(a string, b string, c int) {
+	console.log(a, b, c);
+}
+
+templ NavItems(elems types.NavElements) {
+	for _, item := range elems.Values {
+		<li><a href={ templ.URL(item.Href) }>{ item.Title }</a></li>
+	}
+}
+
+templ Navbar(elems types.NavElements) {
 	<div class="navbar bg-base-100">
 		<div class="navbar-start">
 			<div class="dropdown">
@@ -8,7 +20,7 @@ templ Navbar() {
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path></svg>
 				</div>
 				<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-					<li><a>Item 1</a></li>
+					@NavItems(elems)
 					<li>
 						<a>Parent</a>
 						<ul class="p-2">
@@ -23,7 +35,7 @@ templ Navbar() {
 		</div>
 		<div class="navbar-center hidden lg:flex">
 			<ul class="menu menu-horizontal px-1">
-				<li><a>Item 1</a></li>
+				@NavItems(elems)
 				<li>
 					<details>
 						<summary>Parent</summary>
@@ -37,7 +49,7 @@ templ Navbar() {
 			</ul>
 		</div>
 		<div class="navbar-end">
-			<a class="btn">Button</a>
+			<a class="btn" hx-on:click={ withParameters("test", "text", 123) }>Button</a>
 		</div>
 	</div>
 }
